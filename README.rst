@@ -16,8 +16,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Description
 ===========
-configParser is a Python Class to manage script's config.
-We provide examples to use it.
 
 The following files comprise the downloadFacebookFriendPicture package:
 
@@ -37,5 +35,10 @@ How to use this script
 
 * Create a facebook APP
 * change JSON file
+
+>>> cp facebook.json.sample facebook.json
+>>> vi facebook.json
+
 * launch the script
 
+>>> ./download_fbfriendpicture.py

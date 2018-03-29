@@ -13,9 +13,9 @@ default:
 	@echo
 
 install:
-	@pip3 install git+https://github.com/francois-le-ko4la/configParser.git
-	@pip3 install git+https://github.com/francois-le-ko4la/RestAPIController.git
-	@pip3 install git+https://github.com/francois-le-ko4la/smoothProgressBar.git
+	@pip3 install git+https://github.com/francois-le-ko4la/config-from-json.git
+	@pip3 install git+https://github.com/francois-le-ko4la/rest-api-controller.git
+	@pip3 install git+https://github.com/francois-le-ko4la/smooth-progressbar.git
 
 clean:
 	@rm -Rf *.egg .cache .coverage .tox build dist docs/build htmlcov
