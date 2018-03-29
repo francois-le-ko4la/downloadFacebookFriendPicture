@@ -1,0 +1,11 @@
+{
+	"description": "Facebook APP API - create an application before using this profile",
+ 	"debug": true,
+	"data": {
+		"host": "https://graph.facebook.com",
+    		"token": [
+			"OAuth",
+			"XXXXX TOKEN XXXXX"
+		]
+	}
+}
