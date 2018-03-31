@@ -71,7 +71,7 @@ def download_fbfriendpicture():
         "GET",
         "/v2.12/me/taggable_friends",
         {
-            'fields': 'id,name,picture.width(500).height(500).type(large)',
+            'fields': 'id,name,picture.width(900).height(900).type(large)',
             'limit': '5000'}
         )
 
