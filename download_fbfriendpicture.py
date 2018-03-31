@@ -1,6 +1,38 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+# downloadFacebookFriendPicture
+## Description:
+
+Download Friends' picture from facebook API.
+
+The following files comprise the downloadFacebookFriendPicture package:
+* LICENSE: The license file. configParser is released under the terms of
+the GNU General Public License (GPL), version 3.
+* README.rst: This readme file.
+* Makefile: The setup file. See above for installation instructions.
+
+## Setup:
+
+    git clone https://github.com/francois-le-ko4la/downloadFacebookFriendPicture.git
+    cd downloadFacebookFriendPicture
+    make install
+
+## How to use this script:
+
+* Create a facebook APP
+* change JSON file
+```
+    cp facebook.json.sample facebook.json
+    vi facebook.json
+```
+* launch the script
+```
+    ./download_fbfriendpicture.py
+```
+
+## Note:
+
 This script is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
 License as published by the Free Software Foundation; either
@@ -38,7 +70,9 @@ def download_fbfriendpicture():
     my_fb_api.request(
         "GET",
         "/v2.12/me/taggable_friends",
-        {'fields':'id,name,picture.width(500).height(500).type(large)', 'limit':'5000'}
+        {
+            'fields': 'id,name,picture.width(500).height(500).type(large)',
+            'limit': '5000'}
         )
 
     friends = my_fb_api.get()
@@ -59,5 +93,6 @@ def download_fbfriendpicture():
         except ValueError:
             print("Can't save "+friend['name']+" Saved !")
     my_progressbar.stop()
+
 
 download_fbfriendpicture()

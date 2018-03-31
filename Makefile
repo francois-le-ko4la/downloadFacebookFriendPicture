@@ -22,4 +22,9 @@ clean:
 	@find -depth -type d -name __pycache__ -exec rm -Rf {} \;
 	@find -type f -name '*.pyc' -delete
 
-.PHONY: default install test publish clean
+push:
+	git add *
+	git commit
+	git push
+
+.PHONY: default install test publish clean push
