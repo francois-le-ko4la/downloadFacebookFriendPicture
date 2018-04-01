@@ -25,5 +25,14 @@ clean:
 	@pip3 uninstall -y config-from-json
 	@pip3 uninstall -y rest-api-controller
 	@pip3 uninstall -y smooth-progressbar
+publish:
+	@git add .
+	@git commit
+	@git push
+
+test:
+	@echo 'Pep 8 - in progress...'
+	@pep8 download_fbfriendpicture.py
+	@echo 'Pep 8 - OK !'
 
 .PHONY: default install clean

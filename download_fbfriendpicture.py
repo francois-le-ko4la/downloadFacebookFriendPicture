@@ -4,13 +4,13 @@
 # downloadFacebookFriendPicture
 ## Description:
 
-Download Friends' picture from facebook API.
-
-The following files comprise the downloadFacebookFriendPicture package:
+The following files comprise the `downloadFacebookFriendPicture` package:
 * LICENSE: The license file. configParser is released under the terms of
 the GNU General Public License (GPL), version 3.
 * README.rst: This readme file.
 * Makefile: The setup file. See above for installation instructions.
+* `download_fbfriendpicture.py`: The code of interest.
+* `facebook.json.sample`: Sample config file
 
 ## Setup:
 
