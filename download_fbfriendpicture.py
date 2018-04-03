@@ -13,22 +13,24 @@ under the terms of the GNU General Public License (GPL), version 3.
 * `facebook.json.sample`: Sample config file
 
 ## Setup:
-
+```shell
     git clone https://github.com/francois-le-ko4la/downloadFacebookFriendPicture.git
     cd downloadFacebookFriendPicture
     make install
+```
 
 ## How to use this script:
 
 * Create a facebook APP
 * change JSON file
+```shell
+cp facebook.json.sample facebook.json
+vi facebook.json
 ```
-    cp facebook.json.sample facebook.json
-    vi facebook.json
-```
+
 * launch the script
 ```
-    ./download_fbfriendpicture.py
+./download_fbfriendpicture.py
 ```
 
 ## Note:
@@ -79,6 +81,12 @@ def download_fbfriendpicture():
         host=my_params['data']['host'],
         DEBUG=my_params['debug']
         )
+    # test if we can reach the server
+    if my_fb_api.isconnected() is not True:
+        print("Server unreachable...")
+        exit(1)
+    else:
+        print("Server: OK")
 
     my_fb_api.request(
         "GET",
@@ -87,6 +95,13 @@ def download_fbfriendpicture():
             'fields': 'id,name,picture.width(900).height(900).type(large)',
             'limit': '5000'}
         )
+
+    # get the request status
+    if my_fb_api.isrequested() is not True:
+        print("Request errot...")
+        exit(1)
+    else:
+        print("Request: OK")
 
     friends = my_fb_api.get()
     my_progressbar = SmoothProgressBar()
@@ -107,5 +122,5 @@ def download_fbfriendpicture():
             print("Can't save "+friend['name']+" Saved !")
     my_progressbar.stop()
 
-
-download_fbfriendpicture()
+if __name__ == '__main__':
+    download_fbfriendpicture()
