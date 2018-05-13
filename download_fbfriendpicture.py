@@ -1,60 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-# downloadFacebookFriendPicture
-## Description:
+# downloadFacebookFriendPicture - code breaking
 
-The following files comprise the `downloadFacebookFriendPicture` package:
-* `LICENSE`: The license file. `downloadFacebookFriendPicture` is released
-under the terms of the GNU General Public License (GPL), version 3.
-* `README.md`: This readme file.
-* `Makefile`: Generic management tasks.
-* `download_fbfriendpicture.py`: The code of interest.
-* `facebook.json.sample`: Sample config file
+This package used Facebook API to download friends' picture.
+Due to policy change, it can't be used anymore.
 
-## Setup:
-```shell
-    git clone https://github.com/francois-le-ko4la/downloadFacebookFriendPicture.git
-    cd downloadFacebookFriendPicture
-    make install
+https://developers.facebook.com/docs/graph-api/changelog/breaking-changes/
 ```
+4/4/2018
+...
+Returns Empty Set — The following nodes and edges will now only return empty data sets:
 
-## How to use this script:
-
-* Create a facebook APP
-* change JSON file
-```shell
-cp facebook.json.sample facebook.json
-vi facebook.json
+    /achievement_id
+    /app/achievements
+    /app/scores
+    /user/achievements
+    /user/invitable_friends
+    /user/scores
+    /user/taggable_friends
 ```
-
-* launch the script
-```
-./download_fbfriendpicture.py
-```
-
-## Note:
-
-This script is free software; you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public
-License as published by the Free Software Foundation; either
-version 3 of the License, or (at your option) any later version.
-
-This script is provided in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-## Todo:
-
-    - [X] Create the project
-    - [X] Write code and tests
-    - [X] Test installation and requirements (setup.py and/or Makefile)
-    - [X] Test code
-    - [X] Validate features
-    - [X] Write Doc/stringdoc
-    - [X] Run PEP8 validation
-    - [ ] Clean & last check
-    - [ ] Release
 
 """
 
@@ -79,16 +44,11 @@ def download_fbfriendpicture():
     my_fb_api = RestAPIController(
         token=my_params['data']['token'],
         host=my_params['data']['host'],
-        DEBUG=my_params['debug']
+        debug=True
+        #my_params['debug']
         )
-    # test if we can reach the server
-    if my_fb_api.isconnected() is not True:
-        print("Server unreachable...")
-        exit(1)
-    else:
-        print("Server: OK")
 
-    my_fb_api.request(
+    friends = my_fb_api.request(
         "GET",
         "/v2.12/me/taggable_friends",
         {
@@ -96,14 +56,13 @@ def download_fbfriendpicture():
             'limit': '5000'}
         )
 
-    # get the request status
-    if my_fb_api.isrequested() is not True:
-        print("Request errot...")
-        exit(1)
-    else:
-        print("Request: OK")
 
-    friends = my_fb_api.get()
+    print(friends)
+    exit(1)
+    if friends is None:
+        print("Error")
+        exit(1)
+
     my_progressbar = SmoothProgressBar()
     my_progressbar.start(len(friends['data']))
 
